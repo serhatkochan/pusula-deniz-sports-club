@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -103,7 +104,7 @@ export default function About() {
             <motion.div variants={fadeIn}>
               <h2 className="text-3xl font-bold mb-6 text-blue-600 wavy-underline">Hikayemiz</h2>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                Pusula Deniz Spor Kulübü, 2010 yılında eski milli yüzücü Mustafa Öztürk tarafından İzmir'de kuruldu. Başlangıçta küçük bir tesis ve sınırlı imkanlarla yola çıkan kulübümüz, zaman içinde büyüyerek İzmir'in en prestijli yüzme kulüplerinden biri haline geldi.
+                Pusula Deniz Spor Kulübü, 2010 yılında eski milli yüzücü Mustafa Öztürk tarafından İzmir&apos;de kuruldu. Başlangıçta küçük bir tesis ve sınırlı imkanlarla yola çıkan kulübümüz, zaman içinde büyüyerek İzmir&apos;in en prestijli yüzme kulüplerinden biri haline geldi.
               </p>
               <p className="text-gray-700 mb-4 leading-relaxed">
                 İlk günden bu yana amacımız, her yaştan insana yüzme sevgisini aşılamak ve profesyonel sporculara en iyi eğitimi vermektir. 10 yılı aşkın deneyimimizle, binlerce öğrenciye yüzme öğrettik ve onlarca milli sporcu yetiştirdik.
@@ -140,9 +141,11 @@ export default function About() {
               variants={fadeIn} 
               className="order-first lg:order-last h-80 md:h-96 rounded-xl overflow-hidden shadow-xl img-overlay shine"
             >
-              <img 
+              <Image 
                 src="/images/about-hero.jpg" 
                 alt="Pusula Deniz Spor Kulübü" 
+                width={800}
+                height={600}
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </motion.div>
@@ -298,9 +301,11 @@ export default function About() {
                 className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition duration-500 card-hover"
               >
                 <div className="h-56 overflow-hidden img-overlay">
-                  <img 
+                  <Image 
                     src={facility.image} 
                     alt={facility.title} 
+                    width={500}
+                    height={300}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>

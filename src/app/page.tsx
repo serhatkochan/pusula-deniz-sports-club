@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -41,12 +42,6 @@ export default function Home() {
     triggerOnce: true,
     threshold: 0.1
   });
-
-  const testimonialText = {
-    first: "Pusula Deniz Spor Kulübü'nde aldığım eğitim hayatımı değiştirdi",
-    second: "Profesyonel eğitmenler ve harika bir ortam",
-    third: "Çocuğum için en doğru tercih"
-  };
 
   return (
     <main className="overflow-hidden">
@@ -284,11 +279,13 @@ export default function Home() {
               animate={servicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="h-48 overflow-hidden img-overlay shine">
-                <img 
-                  src="/images/private-lesson.jpg" 
-                  alt="Özel Yüzme Dersleri" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              <div className="mb-6 overflow-hidden rounded-xl shadow-lg img-overlay">
+                <Image
+                  src="/images/private-lesson.jpg"
+                  alt="Özel Dersler"
+                  width={600}
+                  height={400}
+                  className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
               <div className="p-6">
@@ -315,11 +312,13 @@ export default function Home() {
               animate={servicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="h-48 overflow-hidden img-overlay shine">
-                <img 
-                  src="/images/group-lesson.jpg" 
-                  alt="Grup Yüzme Dersleri" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              <div className="mb-6 overflow-hidden rounded-xl shadow-lg img-overlay">
+                <Image
+                  src="/images/group-lesson.jpg"
+                  alt="Grup Dersleri"
+                  width={600}
+                  height={400}
+                  className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
               <div className="p-6">
@@ -378,9 +377,11 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="h-48 overflow-hidden img-overlay shine">
-                <img 
-                  src="/images/summer-camp.jpg" 
-                  alt="Yaz Kampı" 
+                <Image
+                  src="/images/summer-camp.jpg"
+                  alt="Yaz Kampı"
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
@@ -470,10 +471,12 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex items-center mb-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-blue-100 shine">
-                  <img 
-                    src="/images/testimonial-1.jpg" 
-                    alt="Ayşe Yılmaz" 
+                <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
+                  <Image
+                    src="/images/testimonial-1.jpg"
+                    alt="Müşteri Yorumu"
+                    width={80}
+                    height={80}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -498,10 +501,12 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="flex items-center mb-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-blue-100 shine">
-                  <img 
-                    src="/images/testimonial-2.jpg" 
-                    alt="Mehmet Demir" 
+                <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
+                  <Image
+                    src="/images/testimonial-2.jpg"
+                    alt="Müşteri Yorumu"
+                    width={80}
+                    height={80}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -526,10 +531,12 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <div className="flex items-center mb-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-blue-100 shine">
-                  <img 
-                    src="/images/testimonial-3.jpg" 
-                    alt="Can Öztürk" 
+                <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
+                  <Image
+                    src="/images/testimonial-3.jpg"
+                    alt="Müşteri Yorumu"
+                    width={80}
+                    height={80}
                     className="w-full h-full object-cover"
                   />
                 </div>

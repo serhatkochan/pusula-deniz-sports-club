@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -127,7 +128,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Pusula Deniz Spor Kulübü'nde her yaş ve seviye için profesyonel yüzme eğitimi hizmetleri
+            Pusula Deniz Spor Kulübü&apos;nde her yaş ve seviye için profesyonel yüzme eğitimi hizmetleri
           </motion.p>
         </div>
         
@@ -285,9 +286,11 @@ export default function ServicesPage() {
                 className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition duration-500 card-hover"
               >
                 <div className="h-56 overflow-hidden img-overlay">
-                  <img 
+                  <Image 
                     src={service.image} 
                     alt={service.title} 
+                    width={500}
+                    height={300}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -333,8 +336,10 @@ export default function ServicesPage() {
               animate={processInView ? { opacity: 1, width: 80 } : {}}
               transition={{ duration: 0.8 }}
             />
-            <motion.p variants={fadeIn} className="text-xl text-gray-800 max-w-3xl mx-auto">
-              Pusula'da yüzme eğitim süreci nasıl işler?
+            <motion.p 
+              className="text-xl text-gray-800 max-w-3xl mx-auto"
+            >
+              Pusula&apos;da yüzme eğitim süreci nasıl işler?
             </motion.p>
           </motion.div>
 

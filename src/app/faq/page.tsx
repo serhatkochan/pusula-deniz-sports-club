@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -27,13 +27,6 @@ const staggerContainer = {
 };
 
 type Category = 'all' | 'general' | 'courses' | 'membership' | 'facilities';
-
-interface FAQData {
-  id: number;
-  question: string;
-  answer: string;
-  category: Category;
-}
 
 const faqCategories = [
   {
@@ -127,8 +120,6 @@ const faqCategories = [
 ];
 
 export default function FAQ() {
-  const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [activeCategory, setActiveCategory] = useState<string>("Genel Sorular");
 

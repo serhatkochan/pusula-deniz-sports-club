@@ -68,7 +68,7 @@ export default function Loading() {
         
         {/* Yükleme mesajı */}
         <h3 className="text-2xl font-bold text-blue-700 mb-4">Yüzüyoruz...</h3>
-        <p className="text-blue-600 mb-6">Pusula Deniz Spor Kulübü'ne hoş geldiniz</p>
+        <p className="text-blue-600 mb-6">Pusula Deniz Spor Kulübü&apos;ne hoş geldiniz</p>
         
         {/* Yükleme animasyonu - küçük indeterminite dalga animasyonu */}
         <div className="w-32 h-2 relative mb-8">

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -170,9 +171,11 @@ export default function Team() {
                 className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-500 card-hover"
               >
                 <div className="h-72 overflow-hidden img-overlay relative">
-                  <img 
+                  <Image 
                     src={instructor.image} 
                     alt={instructor.name} 
+                    width={500}
+                    height={600}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent opacity-90"></div>
@@ -267,9 +270,11 @@ export default function Team() {
               >
                 <div className="w-full md:w-1/3 flex-shrink-0">
                   <div className="rounded-xl overflow-hidden shadow-md img-overlay shine">
-                    <img 
+                    <Image 
                       src={manager.image} 
                       alt={manager.name} 
+                      width={500}
+                      height={600}
                       className="w-full aspect-square object-cover"
                     />
                   </div>
@@ -337,9 +342,11 @@ export default function Team() {
               >
                 <div className="w-full md:w-1/3">
                   <div className="rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto w-48 h-48 md:w-64 md:h-64 img-overlay shine">
-                    <img 
+                    <Image 
                       src="/images/student-highlight.jpg" 
                       alt="Ece Yılmaz" 
+                      width={500}
+                      height={600}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -392,9 +399,11 @@ export default function Team() {
                 className="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 card-hover"
               >
                 <div className="h-56 overflow-hidden img-overlay">
-                  <img 
+                  <Image 
                     src={student.image} 
                     alt={student.name} 
+                    width={500}
+                    height={600}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
