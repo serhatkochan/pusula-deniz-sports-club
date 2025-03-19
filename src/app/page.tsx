@@ -368,7 +368,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="h-48 overflow-hidden img-overlay shine">
-                <Image
+          <Image
                   src="/images/summer-camp.jpg"
                   alt="Yaz Kampı"
                   width={600}
@@ -486,7 +486,7 @@ export default function Home() {
             >
               <div className="flex items-center mb-4">
                 <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
-                  <Image
+          <Image
                     src="/images/testimonial-2.jpg"
                     alt="Müşteri Yorumu"
                     width={80}
@@ -516,7 +516,7 @@ export default function Home() {
             >
               <div className="flex items-center mb-4">
                 <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md">
-                  <Image
+          <Image
                     src="/images/testimonial-3.jpg"
                     alt="Müşteri Yorumu"
                     width={80}
@@ -567,7 +567,7 @@ export default function Home() {
           >
             İletişime Geçin
           </Link>
-        </div>
+    </div>
       </section>
     </main>
   );
