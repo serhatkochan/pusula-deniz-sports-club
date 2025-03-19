@@ -133,7 +133,7 @@ export default function FAQ() {
     }));
   };
 
-  const [heroRef, heroInView] = useInView({
+  const [faqRef, faqInView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });

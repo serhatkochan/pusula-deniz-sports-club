@@ -27,23 +27,16 @@ const fadeIn = {
   }
 };
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}
+
 export default function Contact() {
-  const [formRef, formInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3
-  });
-
-  const [infoRef, infoInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3
-  });
-  
-  const [mapRef, mapInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3
-  });
-
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -53,9 +46,12 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
   const [formError, setFormError] = useState('');
-  const [submissionStatus, setSubmissionStatus] = useState('');
+
+  const [contactRef, contactInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -156,9 +152,9 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div 
-              ref={formRef}
+              ref={contactRef}
               initial="hidden"
-              animate={formInView ? "visible" : "hidden"}
+              animate={contactInView ? "visible" : "hidden"}
               variants={staggerContainer}
               className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
             >
@@ -168,7 +164,7 @@ export default function Contact() {
               <motion.div 
                 className="divider mx-auto mb-6"
                 initial={{ opacity: 0, width: 0 }}
-                animate={formInView ? { opacity: 1, width: 60 } : {}}
+                animate={contactInView ? { opacity: 1, width: 60 } : {}}
                 transition={{ duration: 0.8 }}
               />
               
@@ -330,9 +326,9 @@ export default function Contact() {
             
             {/* Contact Information */}
             <motion.div 
-              ref={infoRef}
+              ref={contactRef}
               initial="hidden"
-              animate={infoInView ? "visible" : "hidden"}
+              animate={contactInView ? "visible" : "hidden"}
               variants={staggerContainer}
               className="bg-blue-50 relative overflow-hidden rounded-xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300"
             >
@@ -343,7 +339,7 @@ export default function Contact() {
                 <motion.div 
                   className="divider mb-8"
                   initial={{ opacity: 0, width: 0 }}
-                  animate={infoInView ? { opacity: 1, width: 60 } : {}}
+                  animate={contactInView ? { opacity: 1, width: 60 } : {}}
                   transition={{ duration: 0.8 }}
                 />
                 

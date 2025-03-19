@@ -96,7 +96,7 @@ const achievements = [
 ];
 
 export default function AchievementsPage() {
-  const [headerRef, headerInView] = useInView({
+  const [achievementsRef, achievementsInView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });

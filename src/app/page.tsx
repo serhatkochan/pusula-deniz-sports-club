@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -37,10 +38,16 @@ export default function Home() {
     threshold: 0.1
   });
 
-  const [testimonialRef, testimonialInView] = useInView({
+  const [testimonialRef] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const testimonialText = {
+    first: "Pusula Deniz Spor Kulübü'nde aldığım eğitim hayatımı değiştirdi",
+    second: "Profesyonel eğitmenler ve harika bir ortam",
+    third: "Çocuğum için en doğru tercih"
+  };
 
   return (
     <main className="overflow-hidden">
@@ -476,7 +483,7 @@ export default function Home() {
                   <p className="text-sm text-blue-600">Veli</p>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"Kızım 5 yaşında yüzme öğrendi. Eğitmenler çok ilgili ve sabırlı. Kesinlikle tavsiye ediyorum."</p>
+              <p className="text-gray-700 italic">"{testimonialText.first}"</p>
               <div className="mt-3 flex text-yellow-400">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
@@ -502,7 +509,7 @@ export default function Home() {
                   <p className="text-sm text-blue-600">Öğrenci</p>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"40 yaşında yüzme öğrendim! Hiç geç değilmiş. Çok sabırlı ve profesyonel bir eğitim aldım."</p>
+              <p className="text-gray-700 italic">"{testimonialText.second}"</p>
               <div className="mt-3 flex text-yellow-400">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
@@ -528,7 +535,7 @@ export default function Home() {
                   <p className="text-sm text-blue-600">Lisanslı Sporcu</p>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"İlk yarışmama Pusula'da hazırlandım ve birinci oldum. Buradaki antrenörler sayesinde tekniğimi çok geliştirdim."</p>
+              <p className="text-gray-700 italic">"{testimonialText.third}"</p>
               <div className="mt-3 flex text-yellow-400">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>

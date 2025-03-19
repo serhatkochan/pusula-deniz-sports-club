@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const menuItems = [
   { name: 'Ana Sayfa', href: '/' },
@@ -570,8 +571,17 @@ export default function Navigation() {
             </nav>
           </div>
           
-          <div className="py-8 text-center text-white/70 text-sm">
-            <p>© 2023 Pusula Deniz Spor Kulübü</p>
+          <div className="py-8 text-center">
+            <div className="mb-4">
+              <Image
+                src="/images/logo.png"
+                alt="Pusula Deniz Spor Kulübü Logo"
+                width={100}
+                height={40}
+                className="mx-auto brightness-0 invert"
+              />
+            </div>
+            <p className="text-white/70 text-sm">© 2025 Pusula Deniz Spor Kulübü</p>
           </div>
         </motion.div>
       </div>
