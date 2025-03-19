@@ -26,8 +26,6 @@ const staggerContainer = {
   }
 };
 
-type Category = 'all' | 'general' | 'courses' | 'membership' | 'facilities';
-
 const faqCategories = [
   {
     title: "Genel Sorular",

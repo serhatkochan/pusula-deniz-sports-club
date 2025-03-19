@@ -33,7 +33,7 @@ export default function ServicesPage() {
     threshold: 0.1
   });
 
-  const [servicesRef, servicesInView] = useInView({
+  const [serviceListRef, serviceListInView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
@@ -214,7 +214,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Detailed Services Section */}
-      <section ref={servicesRef} className="py-20 px-4 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
+      <section ref={serviceListRef} className="py-20 px-4 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
         {/* Dekoratif arka plan deseni */}
         <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none z-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-300 transform translate-x-1/3 -translate-y-1/3"></div>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div
             initial="hidden"
-            animate={servicesInView ? "visible" : "hidden"}
+            animate={serviceListInView ? "visible" : "hidden"}
             variants={staggerContainer}
             className="text-center mb-16"
           >
@@ -234,7 +234,7 @@ export default function ServicesPage() {
             <motion.div 
               className="divider mx-auto mb-6"
               initial={{ opacity: 0, width: 0 }}
-              animate={servicesInView ? { opacity: 1, width: 80 } : {}}
+              animate={serviceListInView ? { opacity: 1, width: 80 } : {}}
               transition={{ duration: 0.8 }}
             />
             <motion.p variants={fadeIn} className="text-xl text-gray-800 max-w-3xl mx-auto">
@@ -244,7 +244,7 @@ export default function ServicesPage() {
 
           <motion.div
             initial="hidden"
-            animate={servicesInView ? "visible" : "hidden"}
+            animate={serviceListInView ? "visible" : "hidden"}
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >

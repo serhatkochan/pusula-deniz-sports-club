@@ -74,7 +74,7 @@ export default function NotFound() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Pusula'yı Kaybettik!
+          Pusula&apos;yı Kaybettik!
         </motion.h2>
         
         <div className="text-xl text-gray-700 mb-8">
