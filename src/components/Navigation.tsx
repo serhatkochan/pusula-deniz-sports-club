@@ -576,7 +576,7 @@ export default function Navigation() {
               <Image
                 src="/images/logo.png"
                 alt="Pusula Deniz Spor Kulübü Logo"
-                width={100}
+                width={120}
                 height={40}
                 className="mx-auto brightness-0 invert"
               />
