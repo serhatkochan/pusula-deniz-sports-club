@@ -3,6 +3,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #0284c7; /* Koyu mavi - deniz teması */
+  --primary-dark: #0369a1;
+  --primary-light: #38bdf8;
+  --primary-light-hover: #7dd3fc;
+  --secondary: #f0f9ff;
+  --accent: #06b6d4;
+  --water-light: #bae6fd;
+  --water-mid: #0ea5e9;
+  --water-dark: #0c4a6e;
+  --water-deep: #075985;
+  --water-surface: #e0f2fe;
+  --sand: #fef3c7;
 }
 
 @theme inline {
@@ -23,4 +35,524 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Yazı gölgeleri */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Geçiş efektleri */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to top, var(--background), transparent);
+  pointer-events: none;
+}
+
+.section-transition-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(1px);
+  filter: drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.05));
+}
+
+/* Butonlar için özel stiller */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(2, 132, 199, 0.25);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  box-shadow: 0 6px 12px rgba(2, 132, 199, 0.35);
+  transform: translateY(-3px);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: -1;
+  border-radius: 50%;
+  transform: scale(0);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.btn-secondary:hover::after {
+  bottom: 0;
+  border-radius: 0;
+  transform: scale(3);
+}
+
+/* Kartlar için gelişmiş hover efektleri */
+.card-hover {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--water-light), var(--water-mid), var(--primary));
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px -5px rgba(12, 74, 110, 0.15), 0 10px 15px -5px rgba(12, 74, 110, 0.1);
+}
+
+.card-hover:hover::before {
+  opacity: 1;
+}
+
+/* Su dalgası efekti - tamamen yenilenmiş versiyon */
+.water-wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.water-wave::before,
+.water-wave::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%23ffffff' fill-opacity='0.3'%3E%3C/path%3E%3C/svg%3E");
+  height: 60px;
+  background-size: 100% 100%;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.water-wave::after {
+  bottom: 0;
+  height: 40px;
+  animation: gentleWave 8s linear infinite;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff' fill-opacity='0.4'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.water-wave::before {
+  bottom: 0;
+  height: 30px;
+  animation: gentleWave 10s linear infinite reverse;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23ffffff' fill-opacity='0.25'%3E%3C/path%3E%3C/svg%3E");
+}
+
+@keyframes gentleWave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(-30%);
+  }
+}
+
+/* Ayrıştırıcılar */
+.divider {
+  height: 2px;
+  width: 80px;
+  background: var(--primary);
+  margin: 1rem auto;
+  transition: width 0.8s ease;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+}
+
+.divider::before {
+  left: -6px;
+}
+
+.divider::after {
+  right: -6px;
+}
+
+.divider-light {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.divider-light::before,
+.divider-light::after {
+  background-color: white;
+}
+
+/* Animasyonlu section arka planları */
+.animated-bg {
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.animated-bg-slow {
+  background-size: 200% 200%;
+  animation: gradientAnimation 25s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Görsel overlay efektleri */
+.img-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 50%, rgba(12, 74, 110, 0.75) 100%);
+  transition: all 0.4s ease;
+  opacity: 0.7;
+}
+
+.img-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(12, 74, 110, 0.2);
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.img-overlay:hover::after {
+  opacity: 0.9;
+}
+
+.img-overlay:hover::before {
+  opacity: 1;
+}
+
+.img-overlay img {
+  transition: transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.img-overlay:hover img {
+  transform: scale(1.1) rotate(1deg);
+}
+
+/* Düz kaydırma için */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section geçişleri */
+.section-overlap {
+  position: relative;
+  z-index: 1;
+  margin-top: -60px;
+}
+
+/* Okyanüs gradyanı - daha yumuşak ve doğal tonlar */
+.ocean-gradient {
+  background: linear-gradient(135deg, #0369a1, #0891b2, #0ea5e9);
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Arka plan deseni iyileştirildi */
+.ocean-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' fill='%23ffffff' fill-opacity='0.9'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ocean-gradient-vertical {
+  background: linear-gradient(to bottom, var(--water-deep), var(--primary), var(--water-light));
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Alternatif deniz gradyanları için yeni sınıflar */
+.ocean-gradient-soft {
+  background: linear-gradient(to right, #0ea5e9, #38bdf8, #7dd3fc);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.ocean-gradient-deep {
+  background: linear-gradient(135deg, #075985, #0369a1, #0891b2);
+}
+
+/* Bubble animasyonları */
+.bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 8s infinite ease-in;
+}
+
+.bubble:nth-child(1) {
+  width: 30px;
+  height: 30px;
+  left: 10%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  left: 20%;
+  animation-duration: 8s;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+  width: 35px;
+  height: 35px;
+  left: 35%;
+  animation-duration: 10s;
+  animation-delay: 1.5s;
+}
+
+.bubble:nth-child(4) {
+  width: 25px;
+  height: 25px;
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0.5s;
+}
+
+.bubble:nth-child(5) {
+  width: 40px;
+  height: 40px;
+  left: 65%;
+  animation-duration: 9s;
+  animation-delay: 2.5s;
+}
+
+.bubble:nth-child(6) {
+  width: 15px;
+  height: 15px;
+  left: 80%;
+  animation-duration: 6s;
+  animation-delay: 3s;
+}
+
+.bubble:nth-child(7) {
+  width: 28px;
+  height: 28px;
+  left: 90%;
+  animation-duration: 8s;
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-800px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Shine efekti */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  transform: skewX(-25deg);
+  z-index: 1;
+  transition: all 0.75s;
+}
+
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+/* Dalgalı alt çizgi */
+.wavy-underline {
+  position: relative;
+}
+
+.wavy-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 5px;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4C10 0 15 8 25 4C35 0 40 8 50 4C60 0 65 8 75 4C85 0 90 8 100 4' stroke='%2338bdf8' fill='none'/%3E%3C/svg%3E");
+  background-size: 100px 8px;
+  background-repeat: repeat-x;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.wavy-underline:hover::after {
+  opacity: 1;
+  bottom: -3px;
+}
+
+/* Yüzen animasyonlar */
+.floating {
+  animation: floating 4s ease-in-out infinite;
+}
+
+.floating-slow {
+  animation: floating 6s ease-in-out infinite;
+}
+
+.floating-fast {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Fade-in animasyonları */
+.fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
