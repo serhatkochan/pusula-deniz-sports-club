@@ -315,7 +315,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden water-wave">
+      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden">
         <div className="bubble-container">
           <div className="bubble"></div>
           <div className="bubble"></div>

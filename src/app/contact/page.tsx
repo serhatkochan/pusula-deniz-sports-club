@@ -4,25 +4,25 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: "easeOut"
-    }
-  }
-};
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6
     }
   }
 };
@@ -30,12 +30,17 @@ const staggerContainer = {
 export default function Contact() {
   const [formRef, formInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.3
   });
 
   const [infoRef, infoInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.3
+  });
+  
+  const [mapRef, mapInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3
   });
 
   const [formData, setFormData] = useState({
@@ -49,36 +54,50 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [formError, setFormError] = useState('');
+  const [submissionStatus, setSubmissionStatus] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Form gönderim fonksiyonu
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setError('');
-
-    // Form validation
-    if (!formData.name || !formData.email || !formData.message) {
-      setError('Lütfen gerekli alanları doldurun.');
-      setIsSubmitting(false);
+    
+    // Tüm zorunlu alanların doldurulduğunu kontrol et
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      setFormError('Lütfen tüm zorunlu alanları doldurun');
       return;
     }
-
-    // Simulating form submission
+    
+    // Telefon numarası doğrulama
+    const cleanedPhone = formData.phone.replace(/\D/g, '');
+    if (cleanedPhone.length < 10) {
+      setFormError('Lütfen geçerli bir telefon numarası girin (en az 10 hane)');
+      return;
+    }
+    
+    // Form gönderimini başlat
+    setIsSubmitting(true);
+    setFormError('');
+    
+    // Form gönderimini simüle et
     setTimeout(() => {
-      setIsSubmitting(false);
+      // Başarılı gönderim
       setIsSubmitted(true);
-      // Reset form after submission
+      
+      // Formu sıfırla
       setFormData({
         name: '',
         email: '',
         phone: '',
         service: '',
-        message: ''
+        message: '',
       });
+      
+      setIsSubmitting(false);
     }, 1500);
   };
 
@@ -155,30 +174,24 @@ export default function Contact() {
               
               {isSubmitted ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-gradient-to-r from-blue-500 to-emerald-400 p-8 rounded-2xl text-white text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="bg-green-50 border border-green-200 rounded-lg p-6 text-center"
                 >
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-green-700 mb-2">Teşekkürler!</h3>
-                  <p className="text-green-600 mb-4">Mesajınızı aldık. En kısa sürede size geri dönüş yapacağız.</p>
-                  <button
-                    onClick={() => setIsSubmitted(false)}
-                    className="text-blue-600 font-medium hover:text-blue-800 transition-colors cursor-pointer"
-                  >
-                    Yeni Mesaj Gönder
-                  </button>
+                  <h3 className="text-2xl font-bold mb-4">Teşekkürler!</h3>
+                  <p className="mb-4">
+                    Mesajınız başarıyla alındı. {formData.phone && formData.email ? 
+                      `Size ${formData.phone} numaralı telefonunuzdan veya ${formData.email} adresinizden ulaşacağız.` : 
+                      'En kısa sürede sizinle iletişime geçeceğiz.'}
+                  </p>
+                  <IoMdCheckmarkCircleOutline className="text-6xl mx-auto text-white" />
                 </motion.div>
               ) : (
                 <motion.form onSubmit={handleSubmit} variants={fadeIn} className="space-y-6">
-                  {error && (
+                  {formError && (
                     <div className="bg-red-50 border border-red-200 text-red-600 rounded-lg p-4 mb-4">
-                      {error}
+                      {formError}
                     </div>
                   )}
                   
@@ -194,7 +207,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800 touch-manipulation"
                         placeholder="Adınız Soyadınız"
                       />
                     </div>
@@ -209,8 +222,9 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800 touch-manipulation"
                         placeholder="E-posta adresiniz"
+                        inputMode="email"
                       />
                     </div>
                   </div>
@@ -218,7 +232,7 @@ export default function Contact() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">
-                        Telefon Numaranız
+                        Telefon Numaranız <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="tel"
@@ -226,8 +240,12 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800"
-                        placeholder="(555) 123 4567"
+                        required
+                        pattern="[0-9\s\(\)\-\+]+"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800 touch-manipulation"
+                        placeholder="Örn: 0555 123 45 67"
+                        inputMode="tel"
+                        title="Lütfen geçerli bir telefon numarası girin"
                       />
                     </div>
                     <div>
@@ -239,7 +257,7 @@ export default function Contact() {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800 touch-manipulation"
                       >
                         <option value="">Seçiniz</option>
                         <option value="çocuk-yüzme">Çocuk Yüzme Dersleri</option>
@@ -263,16 +281,16 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-800 touch-manipulation"
                       placeholder="Mesajınızı buraya yazın..."
                     ></textarea>
                   </div>
                   
-                  <div>
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shine disabled:opacity-70 cursor-pointer"
+                      className={`btn-primary shine transition-all ${!isSubmitting ? 'hover:-translate-y-2' : ''} w-full sm:w-auto flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center">
@@ -283,9 +301,28 @@ export default function Contact() {
                           Gönderiliyor...
                         </span>
                       ) : (
-                        'Mesaj Gönder'
+                        <>
+                          <span>Mesajı Gönder</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 7l5 5m0 0l-5 5m5-5H6"
+                            />
+                          </svg>
+                        </>
                       )}
                     </button>
+                    <p className="text-sm text-gray-500 text-center sm:text-right">
+                      <span className="text-red-500">*</span> ile işaretli alanlar zorunludur
+                    </p>
                   </div>
                 </motion.form>
               )}
@@ -312,7 +349,7 @@ export default function Contact() {
                 
                 <motion.div variants={fadeIn} className="space-y-8">
                   <div className="flex items-start">
-                    <div className="mr-4 bg-white rounded-full p-3 text-blue-600 flex-shrink-0 shadow-md">
+                    <div className="mr-4 icon-btn flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -326,7 +363,7 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="mr-4 bg-white rounded-full p-3 text-blue-600 flex-shrink-0 shadow-md">
+                    <div className="mr-4 icon-btn flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                       </svg>
@@ -339,7 +376,7 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="mr-4 bg-white rounded-full p-3 text-blue-600 flex-shrink-0 shadow-md">
+                    <div className="mr-4 icon-btn flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                       </svg>
@@ -352,7 +389,7 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="mr-4 bg-white rounded-full p-3 text-blue-600 flex-shrink-0 shadow-md">
+                    <div className="mr-4 icon-btn flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
@@ -367,24 +404,24 @@ export default function Contact() {
                   <div className="pt-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">Sosyal Medya</h3>
                     <div className="flex space-x-4">
-                      <a href="#" className="bg-white hover:bg-blue-600 hover:text-white text-blue-600 p-3 rounded-full transition-all duration-300 shadow-md transform hover:-translate-y-1">
+                      <a href="#" className="icon-btn">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12"></path>
                         </svg>
                       </a>
-                      <a href="#" className="bg-white hover:bg-[#1DA1F2] hover:text-white text-blue-600 p-3 rounded-full transition-all duration-300 shadow-md transform hover:-translate-y-1">
+                      <a href="#" className="icon-btn">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path>
                         </svg>
                       </a>
-                      <a href="#" className="bg-white hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white text-blue-600 p-3 rounded-full transition-all duration-300 shadow-md transform hover:-translate-y-1">
+                      <a href="#" className="icon-btn">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z"></path>
                         </svg>
                       </a>
-                      <a href="#" className="bg-white hover:bg-[#FF0000] hover:text-white text-blue-600 p-3 rounded-full transition-all duration-300 shadow-md transform hover:-translate-y-1">
+                      <a href="#" className="icon-btn">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"></path>
+                          <path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12 S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"></path>
                         </svg>
                       </a>
                     </div>
@@ -429,7 +466,7 @@ export default function Contact() {
       </section>
 
       {/* FAQ CTA Section */}
-      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden water-wave">
+      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden">
         <div className="bubble-container">
           <div className="bubble"></div>
           <div className="bubble"></div>

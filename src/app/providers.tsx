@@ -1,17 +1,19 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export function Providers({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
   
   return (
-    <AnimatePresence mode="wait">
-      <div key={pathname}>
+    <AnimatePresence mode="popLayout">
+      <motion.div 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.75 }}
+      >
         {children}
-      </div>
+      </motion.div>
     </AnimatePresence>
   );
 } 

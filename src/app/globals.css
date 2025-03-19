@@ -15,6 +15,19 @@
   --water-deep: #075985;
   --water-surface: #e0f2fe;
   --sand: #fef3c7;
+  
+  /* Buton renk değişkenleri */
+  --btn-primary-bg: #0284c7;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: #0369a1;
+  --btn-primary-hover-text: #ffffff;
+  
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #ffffff;
+  --btn-secondary-border: #ffffff;
+  --btn-secondary-hover-bg: rgba(255, 255, 255, 0.1);
+  --btn-secondary-hover-text: #ffffff;
+  --btn-secondary-hover-border: #ffffff;
 }
 
 @theme inline {
@@ -78,8 +91,8 @@ body {
 
 /* Butonlar için özel stiller */
 .btn-primary {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
   border-radius: 9999px;
   padding: 0.75rem 2rem;
   font-weight: 600;
@@ -88,23 +101,30 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
 }
 
 
 .btn-primary:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--btn-primary-hover-bg);
+  color: var(--btn-primary-hover-text);
   box-shadow: 0 6px 12px rgba(2, 132, 199, 0.35);
   transform: translateY(-3px);
 }
 
-.btn-primary:hover::before {
-  left: 100%;
+.btn-primary:active {
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 2px solid var(--btn-secondary-border);
   border-radius: 9999px;
   padding: 0.75rem 2rem;
   font-weight: 600;
@@ -112,32 +132,39 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.btn-secondary::after {
+.btn-secondary::before {
   content: '';
   position: absolute;
-  bottom: -100%;
-  left: 0;
+  top: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   z-index: -1;
-  border-radius: 50%;
-  transform: scale(0);
+}
+
+.btn-secondary:hover::before {
+  left: 0;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--btn-secondary-hover-bg);
+  color: var(--btn-secondary-hover-text);
+  border-color: var(--btn-secondary-hover-border);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-3px);
 }
 
-.btn-secondary:hover::after {
-  bottom: 0;
-  border-radius: 0;
-  transform: scale(3);
+.btn-secondary:active {
+  transform: translateY(-1px);
 }
 
 /* Kartlar için gelişmiş hover efektleri */
@@ -168,54 +195,6 @@ body {
 
 .card-hover:hover::before {
   opacity: 1;
-}
-
-/* Su dalgası efekti - tamamen yenilenmiş versiyon */
-.water-wave {
-  position: relative;
-  overflow: hidden;
-}
-
-.water-wave::before,
-.water-wave::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%23ffffff' fill-opacity='0.3'%3E%3C/path%3E%3C/svg%3E");
-  height: 60px;
-  background-size: 100% 100%;
-  z-index: 1;
-  transition: all 0.3s ease;
-}
-
-.water-wave::after {
-  bottom: 0;
-  height: 40px;
-  animation: gentleWave 8s linear infinite;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff' fill-opacity='0.4'%3E%3C/path%3E%3C/svg%3E");
-}
-
-.water-wave::before {
-  bottom: 0;
-  height: 30px;
-  animation: gentleWave 10s linear infinite reverse;
-  opacity: 0.3;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23ffffff' fill-opacity='0.25'%3E%3C/path%3E%3C/svg%3E");
-}
-
-@keyframes gentleWave {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-15%);
-  }
-  100% {
-    transform: translateX(-30%);
-  }
 }
 
 /* Ayrıştırıcılar */
@@ -488,14 +467,68 @@ html {
   );
   transform: skewX(-25deg);
   z-index: 1;
-  transition: all 0.75s;
+  transition: none;
 }
 
+.shine:hover::before {
+  animation: shine 0.75s;
+}
 
 @keyframes shine {
   100% {
     left: 125%;
   }
+}
+
+/* Buton gibi davranması gereken diğer elementler */
+button, 
+a.btn-primary, 
+a.btn-secondary,
+.btn-like,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  cursor: pointer;
+}
+
+/* Buton gibi elementler için genel stil */
+.btn-like {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-like:hover {
+  transform: translateY(-3px);
+}
+
+.btn-like:active {
+  transform: translateY(-1px);
+}
+
+/* İkon butonları için stil */
+.icon-btn {
+  background-color: white;
+  color: var(--primary);
+  border-radius: 9999px;
+  padding: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.icon-btn:active {
+  transform: translateY(-1px);
 }
 
 /* Dalgalı alt çizgi */
@@ -559,4 +592,509 @@ html {
   100% {
     opacity: 1;
   }
+}
+
+/* Özel buton varyantları */
+.btn-primary.btn-white {
+  background-color: #ffffff;
+  color: var(--primary);
+}
+
+.btn-primary.btn-white:hover {
+  background-color: #f8fafc;
+  color: var(--primary-dark);
+}
+
+/* Mobil için hızlı erişim butonu */
+.quick-access-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--water-mid), var(--primary-dark));
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  overflow: hidden;
+}
+
+.quick-access-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.quick-access-button:active {
+  transform: scale(0.95);
+}
+
+.quick-access-button:hover::before {
+  opacity: 1;
+}
+
+.quick-access-menu {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  z-index: 29;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.quick-access-item {
+  background: white;
+  color: var(--primary);
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-access-item:hover {
+  background: var(--primary-light);
+  color: white;
+  transform: translateX(-5px);
+}
+
+/* Mobil dokunmatik geliştirmeleri */
+@media (max-width: 768px) {
+  /* Dokunmatik için daha büyük tıklama alanları */
+  .btn-primary, .btn-secondary, button, .btn-like {
+    padding: 0.85rem 2rem;
+    min-height: 48px;
+  }
+  
+  .card-hover {
+    transform: none;
+  }
+  
+  .card-hover:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Daha iyi görülebilir formlar */
+  input, textarea, select {
+    font-size: 16px !important; /* iOS'ta yakınlaştırmayı önler */
+    min-height: 48px;
+  }
+  
+  /* Daha belirgin dokunmatik durumu */
+  a:active, button:active, .btn-like:active {
+    opacity: 0.8;
+    transform: scale(0.97);
+    transition: all 0.1s ease;
+  }
+  
+  /* Shine efekti tıklama ile aktifleştir */
+  .shine:active::before {
+    animation: shine 0.75s;
+  }
+  
+  /* Mobil menü butonları özel stilleri */
+  .ocean-menu-bg .group:active .bg-cyan-300 {
+    transform: scaleX(1) !important;
+  }
+  
+  .ocean-menu-bg a:active {
+    transform: scale(0.98);
+  }
+  
+  /* Deneme dersi buton efekti */
+  .ocean-menu-bg .btn-primary:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Carousel kontrollerini büyütme */
+  .swiper-button-next, .swiper-button-prev {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  
+  /* Gezinme için daha büyük alanlar */
+  nav a, .footer a {
+    padding: 12px 16px;
+    display: inline-block;
+  }
+}
+
+/* Mobil için yükleme performansı optimizasyonları */
+@media (max-width: 768px) {
+  .ocean-gradient::before {
+    background-size: 10px 10px;
+  }
+  
+  .shine::before {
+    display: none;
+  }
+}
+
+/* Dalga animasyonu */
+.wave-animation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.waves {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.waves svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+
+.waves use {
+  animation: wave-motion 25s cubic-bezier(.55,.5,.45,.5) infinite;
+  fill: rgba(255, 255, 255, 0.2);
+}
+
+.waves.back {
+  z-index: 1;
+}
+
+.waves.back use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 13s;
+  opacity: 0.5;
+}
+
+.waves.back use:nth-child(2) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+  opacity: 0.3;
+}
+
+.waves.front {
+  z-index: 2;
+}
+
+.waves.front use:nth-child(1) {
+  animation-delay: -1s;
+  animation-duration: 7s;
+  opacity: 0.5;
+}
+
+.waves.front use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+  opacity: 0.3;
+}
+
+@keyframes wave-motion {
+  0% {
+    transform: translate(-90px);
+  }
+  100% { 
+    transform: translate(85px);
+  }
+}
+
+/* Deniz yüzeyi efektleri */
+.surface-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px);
+  background-size: 30px 30px;
+  animation: surface-dots-animation 10s linear infinite;
+}
+
+@keyframes surface-dots-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
+}
+
+/* Deniz menüsü arka plan gradyanı */
+.ocean-menu-bg {
+  background: linear-gradient(135deg, 
+    rgba(7, 89, 133, 1), 
+    rgba(3, 105, 161, 1), 
+    rgba(14, 165, 233, 1)
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.ocean-menu-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 Q25 25, 50 50 T100 50' stroke='%23ffffff' stroke-opacity='0.03' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fish-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fish {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.5;
+  animation: fish-animation 20s linear infinite;
+}
+
+.fish:nth-child(1) {
+  top: 20%;
+  left: -5%;
+  animation-duration: 25s;
+  animation-delay: 0s;
+}
+
+.fish:nth-child(2) {
+  top: 45%;
+  left: -5%;
+  animation-duration: 20s;
+  animation-delay: 5s;
+}
+
+.fish:nth-child(3) {
+  top: 70%;
+  left: -5%;
+  animation-duration: 30s;
+  animation-delay: 10s;
+}
+
+@keyframes fish-animation {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(110vw) translateY(20px) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+/* Menü açılma animasyonu */
+.menu-reveal {
+  clip-path: circle(0% at 90% 5%);
+  transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-reveal-open {
+  clip-path: circle(150% at 90% 5%);
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave-motion {
+  0% {
+    transform: translate(-90px);
+  }
+  100% { 
+    transform: translate(85px);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes surface-dots-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(100%) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-1000%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-loading {
+  0% { transform: translateX(0) scaleX(1); }
+  50% { transform: translateX(24px) scaleX(2); }
+  100% { transform: translateX(48px) scaleX(1); }
+}
+
+.animate-wave-loading {
+  animation: wave-loading 1.5s infinite ease-in-out;
+}
+
+/* Mobil menü baloncuk geliştirmeleri */
+.ocean-menu-bg .bubble-container {
+  z-index: 2;
+}
+
+.ocean-menu-bg .bubble {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3));
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), inset 0 0 2px rgba(255, 255, 255, 0.8);
+  animation-duration: 7s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ocean-menu-bg .bubble:nth-child(1) {
+  left: 10%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 0s;
+  animation-duration: 9s;
+}
+
+.ocean-menu-bg .bubble:nth-child(2) {
+  left: 35%;
+  width: 10px;
+  height: 10px;
+  animation-delay: 1s;
+  animation-duration: 7s;
+}
+
+.ocean-menu-bg .bubble:nth-child(3) {
+  left: 60%;
+  width: 18px;
+  height: 18px;
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+.ocean-menu-bg .bubble:nth-child(4) {
+  left: 85%;
+  width: 12px;
+  height: 12px;
+  animation-delay: 0.5s;
+  animation-duration: 10s;
+}
+
+.ocean-menu-bg .bubble:nth-child(5) {
+  left: 20%;
+  width: 14px;
+  height: 14px;
+  animation-delay: 1.5s;
+  animation-duration: 8s;
+}
+
+.ocean-menu-bg .bubble:nth-child(6) {
+  left: 45%;
+  width: 8px;
+  height: 8px;
+  animation-delay: 2.5s;
+  animation-duration: 6s;
+}
+
+.ocean-menu-bg .bubble:nth-child(7) {
+  left: 75%;
+  width: 11px;
+  height: 11px;
+  animation-delay: 0.7s;
+  animation-duration: 9s;
+}
+
+.ocean-menu-bg .bubble:nth-child(8) {
+  left: 95%;
+  width: 9px;
+  height: 9px;
+  animation-delay: 3s;
+  animation-duration: 7.5s;
+}
+
+.ocean-menu-bg .bubble:nth-child(9) {
+  left: 5%;
+  width: 16px;
+  height: 16px;
+  animation-delay: 2s;
+  animation-duration: 8.5s;
 }

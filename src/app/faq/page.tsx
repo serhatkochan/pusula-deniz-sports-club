@@ -208,7 +208,7 @@ export default function FAQ() {
                   <button
                     key={category.title}
                     onClick={() => setActiveCategory(category.title)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors btn-like ${
                       activeCategory === category.title
                         ? 'bg-blue-600 text-white shine'
                         : 'bg-white text-gray-700 hover:bg-gray-100'
@@ -280,7 +280,7 @@ export default function FAQ() {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden water-wave">
+      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden">
         <div className="bubble-container">
           <div className="bubble"></div>
           <div className="bubble"></div>

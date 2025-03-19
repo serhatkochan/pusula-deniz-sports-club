@@ -1,34 +1,32 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export default function Loading() {
-  const [progress, setProgress] = useState(0);
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => {
-        const newProgress = prevProgress + Math.random() * 10;
-        return newProgress >= 100 ? 100 : newProgress;
-      });
-    }, 300);
-    
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-  
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-blue-100 z-50">
-      {/* Deniz dalgası arka plan */}
-      <div className="absolute bottom-0 left-0 right-0 h-72 overflow-hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-full">
-          <path 
-            fill="#0ea5e9" 
-            fillOpacity="0.4" 
-            d="M0,224L48,202.7C96,181,192,139,288,138.7C384,139,480,181,576,176C672,171,768,117,864,117.3C960,117,1056,171,1152,176C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
+      {/* Dalga animasyonu */}
+      <div className="absolute bottom-0 left-0 w-full">
+        <div className="wave-container" style={{ height: '200px', position: 'absolute', bottom: 0, width: '100%' }}>
+          <div className="waves back">
+            <svg viewBox="0 24 150 28">
+              <defs>
+                <path id="gentle-wave-back-loading" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+              </defs>
+              <use xlinkHref="#gentle-wave-back-loading" x="48" y="5" fill="rgba(14, 165, 233, 0.3)" />
+              <use xlinkHref="#gentle-wave-back-loading" x="48" y="7" fill="rgba(2, 132, 199, 0.2)" />
+            </svg>
+          </div>
+          <div className="waves front">
+            <svg viewBox="0 24 150 28">
+              <defs>
+                <path id="gentle-wave-front-loading" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+              </defs>
+              <use xlinkHref="#gentle-wave-front-loading" x="48" y="0" fill="rgba(3, 105, 161, 0.4)" />
+              <use xlinkHref="#gentle-wave-front-loading" x="48" y="3" fill="rgba(7, 89, 133, 0.3)" />
+            </svg>
+          </div>
+        </div>
       </div>
       
       {/* Baloncuk animasyonları */}
@@ -61,19 +59,20 @@ export default function Loading() {
         <h3 className="text-2xl font-bold text-blue-700 mb-4">Yüzüyoruz...</h3>
         <p className="text-blue-600 mb-6">Pusula Deniz Spor Kulübü'ne hoş geldiniz</p>
         
-        {/* İlerleme çubuğu */}
-        <div className="w-full max-w-xs bg-white bg-opacity-50 rounded-full h-4 mb-2 overflow-hidden relative">
-          <div 
-            className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full wave-animation"
-            style={{ width: `${progress}%` }}
-          ></div>
+        {/* Yükleme animasyonu - küçük indeterminite dalga animasyonu */}
+        <div className="w-32 h-2 relative mb-8">
+          <div className="absolute inset-0 bg-blue-300 opacity-40 rounded-full"></div>
+          <div className="absolute left-0 top-0 h-2 bg-blue-500 rounded-full w-8 animate-wave-loading"></div>
         </div>
-        <p className="text-blue-800 text-sm font-medium">%{Math.round(progress)} yüzdük</p>
       </div>
       
       {/* Pusula logo */}
-      <div className="absolute bottom-8 animate-pulse">
-        <div className="text-4xl">🧭</div>
+      <div className="absolute bottom-16 animate-pulse flex flex-col items-center">
+        <img 
+          src="/images/logo.png" 
+          alt="Pusula Deniz Spor Kulübü" 
+          className="h-32 object-contain brightness-100"
+        />
       </div>
 
       <style jsx>{`
@@ -159,27 +158,6 @@ export default function Loading() {
         @keyframes kick {
           0% { transform: rotate(-25deg); }
           100% { transform: rotate(25deg); }
-        }
-        
-        .wave-animation {
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .wave-animation::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 200%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-          animation: wave 2s infinite linear;
-        }
-        
-        @keyframes wave {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(50%); }
         }
       `}</style>
     </div>

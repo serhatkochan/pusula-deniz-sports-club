@@ -95,7 +95,7 @@ export default function Home() {
             Profesyonel eğitmenler eşliğinde en iyi yüzme deneyimi
           </motion.p>
           
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -103,18 +103,18 @@ export default function Home() {
           >
             <Link 
               href="/contact" 
-              className="btn-primary shine w-64 sm:w-auto"
+              className="btn-primary shine transition-all hover:-translate-y-2 w-64 text-center"
             >
               Bize Ulaşın
             </Link>
             <Link 
               href="/services" 
-              className="btn-secondary w-64 sm:w-auto"
+              className="btn-secondary transition-all hover:-translate-y-2 w-64 text-center"
             >
               Hizmetlerimiz
             </Link>
           </motion.div>
-          
+
           {/* Keşfet Scroll Indicator - butonların altına taşındı */}
           <motion.div 
             className="mt-28 text-center cursor-pointer mx-auto"
@@ -154,7 +154,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Wave transition */}
         <div className="absolute bottom-0 left-0 w-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full section-transition-wave">
@@ -398,31 +398,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Call to Action */}
       <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden">
-        {/* Su dalgaları animasyonu kaldırıldı */}
-        
-        {/* Baloncuk animasyonları */}
         <div className="bubble-container">
           <div className="bubble"></div>
           <div className="bubble"></div>
           <div className="bubble"></div>
           <div className="bubble"></div>
+          <div className="bubble"></div>
         </div>
-
-        <div className="container mx-auto max-w-4xl text-center relative z-20">
-          <h2 className="text-3xl font-bold mb-4 text-shadow-md">Hemen Başlayın</h2>
+        
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
+          <h2 className="text-3xl font-bold mb-6 text-shadow-md">Hemen Başlayın</h2>
           <motion.div 
-            className="divider divider-light mx-auto mb-8"
+            className="divider divider-light mx-auto mb-6"
             initial={{ opacity: 0, width: 0 }}
-            whileInView={{ opacity: 1, width: 80 }}
+            whileInView={{ opacity: 1, width: 100 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           />
           <p className="text-xl mb-8 max-w-2xl mx-auto text-shadow-sm">Profesyonel eğitmenlerimiz eşliğinde yüzme öğrenmek veya tekniklerinizi geliştirmek için hemen iletişime geçin.</p>
           <Link
             href="/contact"
-            className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-full text-lg font-semibold transition-all inline-block shadow-md hover:shadow-lg hover:-translate-y-1 shine"
+            className="btn-primary shine transition-all hover:-translate-y-2"
           >
             Ücretsiz Deneme Dersi
           </Link>
@@ -562,12 +560,23 @@ export default function Home() {
           <p className="text-lg text-white mb-6 text-shadow-sm">Her yaş ve seviye için özel programlarımızla sizleri bekliyoruz</p>
           <Link
             href="/contact"
-            className="inline-block bg-white text-blue-600 hover:bg-blue-50 font-semibold px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg hover:-translate-y-1 shine"
+            className="btn-primary shine transition-all hover:-translate-y-1"
           >
             İletişime Geçin
           </Link>
         </div>
       </section>
+
+      {/* Wave transition */}
+      <div className="absolute bottom-0 left-0 w-full">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full section-transition-wave">
+          <path 
+            fill="#ffffff" 
+            fillOpacity="1" 
+            d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,58.7C672,43,768,21,864,32C960,43,1056,85,1152,96C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
+          </path>
+        </svg>
+    </div>
     </main>
   );
 }

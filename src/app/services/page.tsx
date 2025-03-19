@@ -484,7 +484,7 @@ export default function Services() {
               <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                 <Link 
                   href="/contact"
-                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3 rounded-lg text-lg font-semibold transition-all shadow-md hover:shadow-lg hover:-translate-y-1 shine"
+                  className="btn-primary shine transition-all hover:-translate-y-1"
                 >
                   Fiyat Teklifi Alın
                 </Link>
@@ -504,7 +504,7 @@ export default function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden water-wave">
+      <section className="py-16 px-4 ocean-gradient text-white relative overflow-hidden">
         <div className="bubble-container">
           <div className="bubble"></div>
           <div className="bubble"></div>
