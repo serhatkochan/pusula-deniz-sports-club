@@ -14,27 +14,7 @@ export default function NotFound() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-blue-100 overflow-hidden relative">
-      {/* Dalga animasyonu */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-56 opacity-70">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-full">
-          <path 
-            fill="#0ea5e9" 
-            fillOpacity="0.4" 
-            d="M0,224L48,202.7C96,181,192,139,288,138.7C384,139,480,181,576,176C672,171,768,117,864,117.3C960,117,1056,171,1152,176C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 sm:h-48 opacity-80" style={{ animationDelay: '0.3s' }}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-full">
-          <path 
-            fill="#38bdf8" 
-            fillOpacity="0.6" 
-            d="M0,96L48,112C96,128,192,160,288,154.7C384,149,480,107,576,101.3C672,96,768,128,864,149.3C960,171,1056,181,1152,176C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
-      
+    <main className="min-h-screen flex flex-col items-center justify-center ocean-menu-bg overflow-hidden relative text-white">
       {/* Baloncuk animasyonları */}
       <div className="bubble-container absolute inset-0 z-0">
         <div className="bubble"></div>
@@ -43,6 +23,48 @@ export default function NotFound() {
         <div className="bubble"></div>
         <div className="bubble"></div>
         <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+      </div>
+      
+      {/* Balık animasyonları */}
+      <div className="fish-container">
+        <motion.div 
+          className="fish"
+          initial={{ x: '-10%', y: '80%', opacity: 0, scale: 1.1 }}
+          animate={{ 
+            x: '110%', 
+            y: ['80%', '75%', '85%', '80%'], 
+            opacity: [0, 0.6, 0.6, 0], 
+            scale: 1.1
+          }}
+          transition={{ 
+            x: { duration: 25, repeat: Infinity, repeatDelay: 15 },
+            y: { duration: 5, repeat: Infinity, repeatType: 'mirror' },
+            opacity: { duration: 25, times: [0, 0.1, 0.9, 1], repeat: Infinity, repeatDelay: 15 }
+          }}
+        >
+          🐟
+        </motion.div>
+        
+        <motion.div 
+          className="fish"
+          initial={{ x: '110%', y: '60%', opacity: 0, scale: 0.7 }}
+          animate={{ 
+            x: '-10%', 
+            y: ['60%', '55%', '65%', '60%'], 
+            opacity: [0, 0.6, 0.6, 0], 
+            scale: 0.7
+          }}
+          transition={{ 
+            x: { duration: 20, repeat: Infinity, repeatDelay: 10 },
+            y: { duration: 4, repeat: Infinity, repeatType: 'mirror' },
+            opacity: { duration: 20, times: [0, 0.1, 0.9, 1], repeat: Infinity, repeatDelay: 10 }
+          }}
+        >
+          🐠
+        </motion.div>
       </div>
       
       {/* Kayıp pusula görseli */}
@@ -60,7 +82,7 @@ export default function NotFound() {
         </motion.div>
         
         <motion.h1 
-          className="text-5xl sm:text-6xl font-bold mb-6 text-blue-800"
+          className="text-5xl sm:text-6xl font-bold mb-6 text-white"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -69,7 +91,7 @@ export default function NotFound() {
         </motion.h1>
         
         <motion.h2 
-          className="text-2xl sm:text-3xl font-semibold mb-3 text-blue-700"
+          className="text-2xl sm:text-3xl font-semibold mb-3 text-blue-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -77,7 +99,7 @@ export default function NotFound() {
           Pusula&apos;yı Kaybettik!
         </motion.h2>
         
-        <div className="text-xl text-gray-700 mb-8">
+        <div className="text-xl text-blue-100 mb-8">
           Aradığınız sayfa bulunamadı. Muhtemelen taşınmış veya silinmiş olabilir.
         </div>
         
@@ -88,7 +110,7 @@ export default function NotFound() {
         >
           <Link 
             href="/" 
-            className="btn-primary shine transition-all hover:-translate-y-2 inline-flex items-center"
+            className="btn-primary bg-white text-blue-700 shine transition-all hover:-translate-y-2 inline-flex items-center"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
@@ -96,6 +118,107 @@ export default function NotFound() {
             Ana Sayfaya Dön
           </Link>
         </motion.div>
+      </div>
+
+      {/* Dalga animasyonu */}
+      <div className="absolute bottom-0 w-full h-[150px] overflow-hidden">
+        <div className="wave wave1"></div>
+        <div className="wave wave2"></div>
+        <div className="wave wave3"></div>
+        <div className="wave wave4"></div>
+        
+        <style jsx>{`
+          .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-repeat: repeat-x;
+            background-position: 0 bottom;
+            transform-origin: center bottom;
+          }
+          
+          .wave1 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7' preserveAspectRatio='none'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.3-200 .7-250 49.3-394.5 49.3v31.8h800v-31.8z' fill='rgba(255,255,255,0.3)'/%3E%3C/svg%3E");
+            background-size: 50% 100%;
+            animation: wave-animation1 18s linear infinite;
+            z-index: 14;
+            opacity: 1;
+          }
+          
+          .wave2 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7' preserveAspectRatio='none'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.3-200 .7-250 49.3-394.5 49.3v31.8h800v-31.8z' fill='rgba(255,255,255,0.2)'/%3E%3C/svg%3E");
+            background-size: 60% 100%;
+            animation: wave-animation2 15s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+            z-index: 13;
+            opacity: 0.9;
+          }
+          
+          .wave3 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7' preserveAspectRatio='none'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.3-200 .7-250 49.3-394.5 49.3v31.8h800v-31.8z' fill='rgba(255,255,255,0.2)'/%3E%3C/svg%3E");
+            background-size: 40% 100%;
+            animation: wave-animation3 30s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+            z-index: 12;
+            opacity: 0.8;
+          }
+          
+          .wave4 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7' preserveAspectRatio='none'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.3-200 .7-250 49.3-394.5 49.3v31.8h800v-31.8z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
+            background-size: 70% 100%;
+            animation: wave-animation4 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+            z-index: 11;
+            opacity: 0.7;
+          }
+          
+          @keyframes wave-animation1 {
+            0% {
+              transform: translateX(0) translateY(0);
+            }
+            50% {
+              transform: translateX(-25%) translateY(3px);
+            }
+            100% {
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+          
+          @keyframes wave-animation2 {
+            0% {
+              transform: translateX(0) translateY(0);
+            }
+            50% {
+              transform: translateX(-30%) translateY(-2px);
+            }
+            100% {
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+          
+          @keyframes wave-animation3 {
+            0% {
+              transform: translateX(0) translateY(0);
+            }
+            50% {
+              transform: translateX(-25%) translateY(4px);
+            }
+            100% {
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+          
+          @keyframes wave-animation4 {
+            0% {
+              transform: translateX(0) translateY(0);
+            }
+            50% {
+              transform: translateX(-20%) translateY(-3px);
+            }
+            100% {
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+        `}</style>
       </div>
     </main>
   );

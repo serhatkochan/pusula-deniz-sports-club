@@ -48,53 +48,6 @@ export default function ServicesPage() {
     threshold: 0.1
   });
 
-  const services = [
-    {
-      title: 'Özel Dersler',
-      description: 'Birebir özel derslerimizde, eğitmenlerimiz tamamen size odaklanarak mevcut seviyenize ve hedeflerinize göre bir program oluşturur. Her yaştan öğrenciye açık olan özel derslerimiz, yüzme öğrenmek isteyen veya tekniklerini geliştirmek isteyenler için idealdir.',
-      features: [
-        'Kişiye özel yüzme programı',
-        'Esnek ders saatleri',
-        'Hızlı ilerleme',
-        'Teknik analiz ve düzeltme'
-      ],
-      image: '/images/private-lesson.jpg'
-    },
-    {
-      title: 'Grup Dersleri',
-      description: 'Yaş ve seviye gruplarına göre düzenlenen grup derslerimiz, eğlenceli ve motive edici bir ortamda yüzme becerilerinizi geliştirmenize olanak tanır. Grup derslerimizde maksimum 6 öğrenci bulunur, böylece her öğrenci yeterli ilgiyi görür.',
-      features: [
-        'Yaş ve seviyeye göre gruplar',
-        'Sosyal ve eğlenceli ortam',
-        'Grup motivasyonu',
-        'Uygun fiyatlı dersler'
-      ],
-      image: '/images/group-lesson.jpg'
-    },
-    {
-      title: 'Yarışma Hazırlık',
-      description: 'Yarışma deneyimi olan eğitmenlerimiz eşliğinde profesyonel müsabakalara hazırlanın. Bu programımız, teknik gelişim, kondisyon artırma, yarışma stratejileri ve mental hazırlık gibi konuları kapsar.',
-      features: [
-        'İleri seviye teknik eğitim',
-        'Performans analizi',
-        'Yarışma simülasyonları',
-        'Beslenme danışmanlığı'
-      ],
-      image: '/images/competition.jpg'
-    },
-    {
-      title: 'Yaz Kampı',
-      description: 'Çocuklar ve gençler için düzenlenen yaz kamplarımız, yoğun yüzme eğitiminin yanı sıra eğlenceli aktiviteler de içerir. 1 haftalık ve 2 haftalık programlar sunan kamplarımız, yaz tatilini değerlendirmek için harika bir fırsattır.',
-      features: [
-        'Günlük yüzme dersleri',
-        'Grup aktiviteleri ve oyunlar',
-        'Haftalık mini yarışmalar',
-        'Sertifika programı'
-      ],
-      image: '/images/summer-camp.jpg'
-    }
-  ];
-
   return (
     <main className="overflow-hidden bg-white">
       {/* Hero Section */}
