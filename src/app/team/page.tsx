@@ -347,9 +347,9 @@ export default function Team() {
                 <div className="w-full md:w-2/3 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-blue-600 mb-2">Ece Yılmaz</h3>
                   <p className="text-gray-600 mb-6 text-lg">Ulusal Yüzme Şampiyonası - 200m Serbest Yüzme Altın Madalya</p>
-                  <p className="text-gray-700 mb-8">
-                    "Pusula Deniz Spor Kulübü'nde 7 yaşında yüzme öğrenmeye başladım. Eğitmenlerim yeteneklerimi keşfetti ve beni yarışmalara hazırladı. Kulübün desteği ve eğitmenlerimin özverili çalışmaları sayesinde bugün ulusal şampiyonada altın madalya kazanabildim. Pusula'ya ve tüm eğitmenlerime sonsuz teşekkürler."
-                  </p>
+                  <div className="text-gray-700 mt-4 italic">
+                    &ldquo;Su, hayatın ta kendisidir. Öğrencilerime sadece yüzmeyi değil, suyla bir bütün olmayı öğretmeye çalışıyorum. Bir öğrencinin suda ilk kez güvenle süzüldüğünü görmek, benim için en büyük mutluluk.&rdquo;
+                  </div>
                   <div className="flex items-center justify-center md:justify-start space-x-2">
                     <div className="text-yellow-400 flex">
                       <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -401,7 +401,9 @@ export default function Team() {
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-blue-600 mb-1">{student.name}</h3>
                   <p className="text-gray-500 text-sm mb-4">{student.title}</p>
-                  <p className="text-gray-700 italic">"{student.quote}"</p>
+                  <p className="text-gray-800 italic font-semibold">
+                    &ldquo;Hayallerini takip et, iyi bir yüzücü olmak için geç kalmış değilsin!&rdquo;
+                  </p>
                 </div>
               </motion.div>
             ))}

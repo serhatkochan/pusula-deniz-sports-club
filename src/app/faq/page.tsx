@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -26,10 +26,14 @@ const staggerContainer = {
   }
 };
 
-type FAQItem = {
+type Category = 'all' | 'general' | 'courses' | 'membership' | 'facilities';
+
+interface FAQData {
+  id: number;
   question: string;
   answer: string;
-};
+  category: Category;
+}
 
 const faqCategories = [
   {
@@ -123,6 +127,8 @@ const faqCategories = [
 ];
 
 export default function FAQ() {
+  const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [activeCategory, setActiveCategory] = useState<string>("Genel Sorular");
 
@@ -132,11 +138,6 @@ export default function FAQ() {
       [question]: !prev[question]
     }));
   };
-
-  const [faqRef, faqInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
 
   const [contentRef, contentInView] = useInView({
     triggerOnce: true,

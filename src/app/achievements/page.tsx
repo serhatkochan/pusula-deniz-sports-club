@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useState, useRef } from 'react';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -96,12 +97,11 @@ const achievements = [
 ];
 
 export default function AchievementsPage() {
-  const [achievementsRef, achievementsInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-
-  const [medalssRef, medalsInView] = useInView({
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  
+  const { ref: heroRef, inView: heroInView } = useInView({ triggerOnce: true });
+  
+  const { ref: medalssRef, inView: medalsInView } = useInView({
     triggerOnce: true,
     threshold: 0.1
   });

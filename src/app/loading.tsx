@@ -1,8 +1,19 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Loading() {
+  const [isComplete, setIsComplete] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsComplete(true);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-blue-100 z-50">
       {/* Dalga animasyonu */}
@@ -64,13 +75,26 @@ export default function Loading() {
           <div className="absolute inset-0 bg-blue-300 opacity-40 rounded-full"></div>
           <div className="absolute left-0 top-0 h-2 bg-blue-500 rounded-full w-8 animate-wave-loading"></div>
         </div>
+
+        {/* Yükleme sonrası içerik */}
+        {isComplete ? (
+          <div className="text-xl text-blue-100 font-medium tracking-wide">
+            Hoş Geldiniz!
+          </div>
+        ) : (
+          <div className="text-xl text-blue-100 font-medium tracking-wide">
+            Dalış için hazırlanıyor...
+          </div>
+        )}
       </div>
       
       {/* Pusula logo */}
       <div className="absolute bottom-16 animate-pulse flex flex-col items-center">
-        <img 
+        <Image 
           src="/images/logo.png" 
           alt="Pusula Deniz Spor Kulübü" 
+          width={150}
+          height={50}
           className="h-32 object-contain brightness-100"
         />
       </div>

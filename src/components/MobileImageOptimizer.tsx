@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 type OptimizedImageProps = {
   src: string;
@@ -70,15 +71,14 @@ export default function OptimizedImage({
         />
       )}
       
-      <img 
+      <Image 
         src={priority || !isMobile ? src : optimizedSrc}
         alt={alt}
         className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-        width={width}
-        height={height}
+        width={width || 500}
+        height={height || 300}
         onLoad={handleLoad}
         onError={handleError}
-        loading={priority ? "eager" : "lazy"}
       />
     </div>
   );

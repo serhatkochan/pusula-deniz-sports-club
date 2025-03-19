@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -483,7 +482,9 @@ export default function Home() {
                   <p className="text-sm text-blue-600">Veli</p>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"{testimonialText.first}"</p>
+              <p className="text-gray-600 italic">
+                &ldquo;Kızımın yüzme korkusu vardı, ancak Pusula&apos;daki eğitmenler sayesinde şimdi suda kendini balık gibi hissediyor! Güler yüzlü ve profesyonel yaklaşımları için teşekkür ederiz.&rdquo;
+              </p>
               <div className="mt-3 flex text-yellow-400">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
@@ -509,7 +510,9 @@ export default function Home() {
                   <p className="text-sm text-blue-600">Öğrenci</p>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"{testimonialText.second}"</p>
+              <p className="text-gray-600 italic">
+                &ldquo;Oğlum için en doğru tercih Pusula oldu. Bireysel ilgi ve profesyonel eğitim sayesinde yüzme tekniklerini hızla öğrendi ve şimdi yarışmalara hazırlanıyor.&rdquo;
+              </p>
               <div className="mt-3 flex text-yellow-400">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
@@ -535,7 +538,9 @@ export default function Home() {
                   <p className="text-sm text-blue-600">Lisanslı Sporcu</p>
                 </div>
               </div>
-              <p className="text-gray-700 italic">"{testimonialText.third}"</p>
+              <p className="text-gray-600 italic">
+                &ldquo;Yetişkin yüzme kursları için araştırma yaparken Pusula&apos;yı buldum. 40 yaşında yüzme öğrenebileceğimi düşünmüyordum, ancak sabırlı eğitmenler sayesinde başardım!&rdquo;
+              </p>
               <div className="mt-3 flex text-yellow-400">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>

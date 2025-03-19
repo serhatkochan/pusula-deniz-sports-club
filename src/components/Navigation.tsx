@@ -69,9 +69,11 @@ export default function Navigation() {
               transition={{ duration: 0.5 }}
               className="relative z-10"
             >
-              <img 
+              <Image 
                 src="/images/logo.png" 
                 alt="Pusula Deniz Spor Kulübü" 
+                width={200}
+                height={80}
                 className={`${scrolled ? 'h-14' : 'h-16'} transition-all duration-300 object-contain ${
                   scrolled ? '' : 'brightness-0 invert'
                 }`} 

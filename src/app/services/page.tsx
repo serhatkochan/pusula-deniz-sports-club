@@ -26,7 +26,7 @@ const staggerContainer = {
   }
 };
 
-export default function Services() {
+export default function ServicesPage() {
   const [headerRef, headerInView] = useInView({
     triggerOnce: true,
     threshold: 0.1

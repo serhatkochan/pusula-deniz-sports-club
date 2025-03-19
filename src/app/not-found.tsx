@@ -77,14 +77,9 @@ export default function NotFound() {
           Pusula'yı Kaybettik!
         </motion.h2>
         
-        <motion.p 
-          className="text-lg max-w-md mb-8 text-gray-700"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          Aradığınız sayfa yüzmeyi öğrendi ve başka bir yere yüzdü. Lütfen ana sayfaya dönün.
-        </motion.p>
+        <div className="text-xl text-gray-700 mb-8">
+          Aradığınız sayfa bulunamadı. Muhtemelen taşınmış veya silinmiş olabilir.
+        </div>
         
         <motion.div
           initial={{ y: 20, opacity: 0 }}
