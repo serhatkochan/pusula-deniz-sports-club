@@ -155,17 +155,6 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-
-        {/* Wave transition */}
-        <div className="absolute bottom-0 left-0 w-full">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full section-transition-wave">
-            <path 
-              fill="#ffffff" 
-              fillOpacity="1" 
-              d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,58.7C672,43,768,21,864,32C960,43,1056,85,1152,96C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
-            </path>
-          </svg>
-        </div>
       </section>
 
       {/* About Section */}
@@ -434,13 +423,6 @@ export default function Home() {
             Ücretsiz Deneme Dersi
           </Link>
         </div>
-        
-        {/* Daha organik ve yumuşak dalga geçişi */}
-        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden">
-          <svg className="w-full" style={{ height: '120px', display: 'block' }} viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,96L34.3,90.7C68.6,85,137,75,206,80C274.3,85,343,107,411,112C480,117,549,107,617,96C685.7,85,754,75,823,74.7C891.4,75,960,85,1029,85.3C1097.1,85,1166,75,1234,64C1302.9,53,1371,43,1406,37.3L1440,32L1440,120L1405.7,120C1371.4,120,1303,120,1234,120C1165.7,120,1097,120,1029,120C960,120,891,120,823,120C754.3,120,686,120,617,120C548.6,120,480,120,411,120C342.9,120,274,120,206,120C137.1,120,69,120,34,120L0,120Z" fill="#ffffff" fillOpacity="1"></path>
-          </svg>
-        </div>
       </section>
 
       {/* Testimonials */}
@@ -587,17 +569,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* Wave transition */}
-      <div className="absolute bottom-0 left-0 w-full">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full section-transition-wave">
-          <path 
-            fill="#ffffff" 
-            fillOpacity="1" 
-            d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,58.7C672,43,768,21,864,32C960,43,1056,85,1152,96C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
-          </path>
-        </svg>
-    </div>
     </main>
   );
 }

@@ -154,7 +154,7 @@ export default function Contact() {
             <motion.div 
               ref={contactRef}
               initial="hidden"
-              animate={contactInView ? "visible" : "hidden"}
+              animate="visible"
               variants={staggerContainer}
               className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
             >
@@ -164,7 +164,7 @@ export default function Contact() {
               <motion.div 
                 className="divider mx-auto mb-6"
                 initial={{ opacity: 0, width: 0 }}
-                animate={contactInView ? { opacity: 1, width: 60 } : {}}
+                animate={{ opacity: 1, width: 60 }}
                 transition={{ duration: 0.8 }}
               />
               
@@ -328,7 +328,7 @@ export default function Contact() {
             <motion.div 
               ref={contactRef}
               initial="hidden"
-              animate={contactInView ? "visible" : "hidden"}
+              animate="visible"
               variants={staggerContainer}
               className="bg-blue-50 relative overflow-hidden rounded-xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300"
             >
@@ -339,7 +339,7 @@ export default function Contact() {
                 <motion.div 
                   className="divider mb-8"
                   initial={{ opacity: 0, width: 0 }}
-                  animate={contactInView ? { opacity: 1, width: 60 } : {}}
+                  animate={{ opacity: 1, width: 60 }}
                   transition={{ duration: 0.8 }}
                 />
                 

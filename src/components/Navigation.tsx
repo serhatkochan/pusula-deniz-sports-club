@@ -527,12 +527,12 @@ export default function Navigation() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="mb-4"
+                  className="mb-2"
                 >
                   <div className="relative rounded-xl overflow-hidden group shine">
                     <Link 
                       href={item.href}
-                      className="block py-3 px-4 text-xl font-medium text-white text-center relative overflow-hidden transition-all duration-300 z-10"
+                      className="block py-2 px-3 text-base sm:text-xl font-medium text-white text-center relative overflow-hidden transition-all duration-300 z-10"
                       onClick={() => setIsOpen(false)}
                     >
                       <span className="relative z-10">{item.name}</span>
@@ -549,7 +549,7 @@ export default function Navigation() {
                 </motion.div>
               ))}
               <motion.div 
-                className="mt-8 text-center"
+                className="mt-4 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
@@ -557,7 +557,7 @@ export default function Navigation() {
                 <div className="relative overflow-hidden shine rounded-full inline-block">
                   <Link 
                     href="/contact" 
-                    className="btn-primary btn-white text-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 block"
+                    className="btn-primary btn-white text-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 block text-sm sm:text-base py-2 px-4"
                     onClick={() => setIsOpen(false)}
                   >
                     <motion.span 

@@ -73,16 +73,16 @@ export default function NotFound() {
           initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
           animate={{ scale: 1, opacity: 1, rotate: 0 }}
           transition={{ duration: 0.7 }}
-          className="mb-8"
+          className="mb-6 md:mb-8"
         >
           <div className="relative">
-            <div className="text-8xl sm:text-9xl">🧭</div>
-            <div className="absolute -top-2 -right-2 text-4xl animate-ping opacity-70">💧</div>
+            <div className="text-6xl sm:text-8xl md:text-9xl">🧭</div>
+            <div className="absolute -top-2 -right-2 text-2xl md:text-4xl animate-ping opacity-70">💧</div>
           </div>
         </motion.div>
         
         <motion.h1 
-          className="text-5xl sm:text-6xl font-bold mb-6 text-white"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 text-white"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -91,7 +91,7 @@ export default function NotFound() {
         </motion.h1>
         
         <motion.h2 
-          className="text-2xl sm:text-3xl font-semibold mb-3 text-blue-100"
+          className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2 md:mb-3 text-blue-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -99,7 +99,7 @@ export default function NotFound() {
           Pusula&apos;yı Kaybettik!
         </motion.h2>
         
-        <div className="text-xl text-blue-100 mb-8">
+        <div className="text-sm sm:text-base md:text-xl text-blue-100 mb-6 md:mb-8">
           Aradığınız sayfa bulunamadı. Muhtemelen taşınmış veya silinmiş olabilir.
         </div>
         
