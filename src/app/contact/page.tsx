@@ -48,10 +48,10 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formError, setFormError] = useState('');
 
-  const [contactRef, contactInView] = useInView({
+  const contactRef = useInView({
     triggerOnce: true,
     threshold: 0.1
-  });
+  }).ref;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
